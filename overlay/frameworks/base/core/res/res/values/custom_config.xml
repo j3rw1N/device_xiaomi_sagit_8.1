@@ -40,4 +40,11 @@
     <bool name="config_deviceHasVariableButtonBrightness">true</bool>    
     <bool name="config_deviceHasButtonBacklight">true</bool>
 
+    <!-- Is the battery LED intrusive? -->
+    <bool name="config_intrusiveBatteryLed">true</bool>
+
+    <!-- Do the battery/notification LEDs support pulsing?
+         Used to decide if we show pulse settings -->
+    <bool name="config_ledCanPulse">true</bool>
+
 </resources>
