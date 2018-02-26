@@ -162,7 +162,8 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
-    fingerprint.msm8998
+    fingerprint.msm8998 \
+    XiaomiPocketMode
 
 # For config.fs
 PRODUCT_PACKAGES += \
