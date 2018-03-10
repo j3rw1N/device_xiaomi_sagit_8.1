@@ -13,18 +13,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-$(call inherit-product, device/xiaomi/sagit/full_sagit.mk)
+# Sample: This is where we'd set a backup provider if we had one
+# $(call inherit-product, device/sample/products/backup_overlay.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+
+# Get the prebuilt list of APNs
+$(call inherit-product, vendor/omni/config/gsm.mk)
+
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+
+# must be before including omni part
+TARGET_BOOTANIMATION_SIZE := 1080p
+
+# Inherit from our custom product configuration
+$(call inherit-product, vendor/omni/config/common.mk)
+
+# Inherit from sagit device
+$(call inherit-product, device/xiaomi/sagit/device.mk)
 
 # Inherit some common PE stuff.
 TARGET_ARCH := arm64
 TARGET_DENSITY := xxhdpi
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_INCLUDE_ARCORE := true
-$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
 CUSTOM_BUILD_TYPE=OFFICIAL
 
@@ -43,3 +56,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_FINGERPRINT="Xiaomi/sagit/sagit:8.0.0/OPR1.170623.027/V9.2.3.0.OCAMIEK:user/release-keys" \
     PRIVATE_BUILD_DESC="sagit-user 8.0.0 OPR1.170623.027 V9.2.3.0.OCAMIEK release-keys"
 
+TARGET_VENDOR := xiaomi
